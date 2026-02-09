@@ -1,0 +1,13 @@
+{
+  "name": "eoa-tooling",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": "Scripts to generate an Ethereum EOA - Externally Owned Account.",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ethers": "^5.8.0",
+    "solc": "^0.8.31"
+  }
+}

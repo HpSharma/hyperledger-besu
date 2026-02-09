@@ -1,0 +1,119 @@
+version: "3.8"
+
+networks:
+  besu-network:
+    driver: bridge
+
+services:
+  bankA-v1:
+    image: hyperledger/besu:25.12.0
+    container_name: bankA-v1
+    hostname: bankA-v1
+    volumes:
+      - ../shared-config:/config:ro,z
+      - ../orgs/bankA/validator1:/validator:Z
+    command: 
+      - --genesis-file=/config/genesis.json
+      - --data-path=/validator/data
+      - --node-private-key-file=/validator/keys/nodekey
+      - --network-id=20260206
+      - --sync-mode=FULL
+      - --discovery-enabled=false
+      - --static-nodes-file=/config/static-nodes.json
+      - --rpc-http-enabled=true
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8545
+      - --rpc-http-api=ETH,NET,WEB3,QBFT,ADMIN,DEBUG,MINER,TXPOOL,CLIQUE
+      - --rpc-http-cors-origins=*
+      - --host-allowlist=*
+      - --min-gas-price=0
+      - --p2p-port=30303
+      - --Xdns-enabled=true
+      - --Xdns-update-enabled=true
+    ports:
+      - "8545:8545"
+
+
+  bankA-v2:
+    image: hyperledger/besu:25.12.0
+    container_name: bankA-v2
+    hostname: bankA-v2
+    volumes:
+      - ../shared-config:/config:ro,z
+      - ../orgs/bankA/validator2:/validator:Z
+    command: 
+      - --genesis-file=/config/genesis.json
+      - --data-path=/validator/data
+      - --node-private-key-file=/validator/keys/nodekey
+      - --network-id=20260206
+      - --sync-mode=FULL
+      - --discovery-enabled=false
+      - --static-nodes-file=/config/static-nodes.json
+      - --rpc-http-enabled=true
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8545
+      - --rpc-http-api=ETH,NET,WEB3,QBFT,ADMIN,DEBUG,MINER,TXPOOL,CLIQUE
+      - --rpc-http-cors-origins=*
+      - --host-allowlist=*
+      - --min-gas-price=0
+      - --p2p-port=30303
+      - --Xdns-enabled=true
+      - --Xdns-update-enabled=true
+    ports:
+      - "8546:8545"
+  
+  bankB-v3:
+    image: hyperledger/besu:25.12.0
+    container_name: bankB-v3
+    hostname: bankB-v3
+    volumes:
+      - ../shared-config:/config:ro,z
+      - ../orgs/bankB/validator3:/validator:Z
+    command: 
+      - --genesis-file=/config/genesis.json
+      - --data-path=/validator/data
+      - --node-private-key-file=/validator/keys/nodekey
+      - --network-id=20260206
+      - --sync-mode=FULL
+      - --discovery-enabled=false
+      - --static-nodes-file=/config/static-nodes.json
+      - --rpc-http-enabled=true
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8545
+      - --rpc-http-api=ETH,NET,WEB3,QBFT,ADMIN,DEBUG,MINER,TXPOOL,CLIQUE
+      - --rpc-http-cors-origins=*
+      - --host-allowlist=*
+      - --min-gas-price=0
+      - --p2p-port=30303
+      - --Xdns-enabled=true
+      - --Xdns-update-enabled=true
+    ports:
+      - "8547:8545"
+
+  bankB-v4:
+    image: hyperledger/besu:25.12.0
+    container_name: bankB-v4
+    hostname: bankB-v4
+    volumes:
+      - ../shared-config:/config:ro,z
+      - ../orgs/bankB/validator4:/validator:Z
+    command: 
+      - --genesis-file=/config/genesis.json
+      - --data-path=/validator/data
+      - --node-private-key-file=/validator/keys/nodekey
+      - --network-id=20260206
+      - --sync-mode=FULL
+      - --discovery-enabled=false
+      - --static-nodes-file=/config/static-nodes.json
+      - --rpc-http-enabled=true
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8545
+      - --rpc-http-api=ETH,NET,WEB3,QBFT,ADMIN,DEBUG,MINER,TXPOOL,CLIQUE
+      - --rpc-http-cors-origins=*
+      - --host-allowlist=*
+      - --min-gas-price=0
+      - --p2p-port=30303
+      - --Xdns-enabled=true
+      - --Xdns-update-enabled=true
+    ports:
+      - "8548:8545"

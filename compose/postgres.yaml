@@ -1,0 +1,23 @@
+version: "3.9"
+
+networks:
+  firefly-network:
+    external: true
+
+services:
+  postgres:
+    image: postgres:16.11
+    container_name: postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_USER: firefly
+      POSTGRES_PASSWORD: firefly
+      POSTGRES_DB: firefly
+
+    volumes:
+      - /var/lib/firefly/db:/var/lib/postgresql/data:Z
+    networks:
+      - firefly-network
+    ports:
+      - "5432:5432"
