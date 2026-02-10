@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  firefly-postgres:
+    image: postgres:16.11
+    container_name: firefly-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+
+    volumes:
+      - ./data:/var/lib/postgresql/data:Z
+      - ./initdb:/docker-entrypoint-initdb.d:Z
+
+    ports:
+      - "5432:5432"

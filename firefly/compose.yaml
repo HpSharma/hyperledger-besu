@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  firefly-bankA:
+    image: ghcr.io/hyperledger/firefly:v1.4.0
+    container_name: firefly-bankA
+    restart: unless-stopped
+    volumes:
+      - ./config:/config:Z
+      - ./logs:/logs:Z
+      - ./data:/data:Z
+    command: 
+      - "-f"
+      - "/config/core.yaml"
+    ports:
+      - "5000:5000"
+      - "5100:5100"
+    depends-on:
+      - firefly-postgres

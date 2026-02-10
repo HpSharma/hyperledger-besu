@@ -1,0 +1,46 @@
+node:
+  name: firefly-bankA-01
+  privateAddress: firefly-bankA-01
+  publicAddress: firefly-bankA-01
+
+log:
+  level: debug
+
+ui:
+  enabled: true
+  path: /frontend
+
+spi:
+  enabled: true
+  port: 5100
+  address: 0.0.0.0
+
+http:
+  address: "0.0.0.0"
+  port: 5000
+
+database:
+  type: postgres
+  postgres:
+    url: postgres://firefly:firefly@firefly-postgres:5432/firefly
+    migrations:
+      auto: true
+
+dataexchange:
+  type: sharedstorage
+  sharedstorage:
+    path: /firefly/data/storage
+  
+plugins:
+  ethereum:
+    type: ethereum
+    ethereum:
+      url: http://localhost:8545
+      ws:
+        url: ws://localhost:8575
+
+security:
+  enabled: false
+
+matrics:
+  enabled: false

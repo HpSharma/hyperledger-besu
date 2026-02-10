@@ -1,11 +1,29 @@
 Generate an Ethereum EOA - Externally Owned Account.
-podman run --rm -it \
-  -v $(pwd)/eth-keys:/keys:Z \
-  hyperledger/besu:25.12.0 \
-    account new --keystore-path=/keys
 
+```bash
+# Check block counts
+curl -s -X POST http://localhost:8545 \
+  -H "Content-Type: application/json" \
+  --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_blockNumber",
+    "params": [],
+    "id": 1
+  }'
 
-podman run -d \
+# Get chainId
+curl -s -X POST http://localhost:8545 \
+  -H "Content-Type: application/json" \
+  --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_chainId",
+    "params": [],
+    "id": 1
+  }'
+```
+
+```bash
+podman run -d \s
   --name firefly-core-org1 \
   --restart=unless-stopped \
   --network firefly-network \
@@ -18,3 +36,32 @@ podman run -d \
   -f /config/core.yaml
 
 
+1. Create the Namespace (Exaclty Once)
+curl -s -X POST http://localhost:5100/api/v1/namespaces \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "bankA",
+    "description": "BankA primary Firefly namespace for Besu QBFT"
+  }'
+
+2. Check Namespace
+curl -s http://localhost:5100/api/v1/namespaces
+
+curl -s http://localhost:5000/api/v1/status
+```
+
+
+```bash
+  # ws event listener
+  wscat -c ws://localhost:8575
+  { "jsonrpc": "2.0", "method": "eth_subscribe", "params": ["newHeads"], "id": 101  }
+```
+
+
+```bash
+# execute postgres
+
+podman exec -it firefly-postgres psql -U postgres
+
+
+```

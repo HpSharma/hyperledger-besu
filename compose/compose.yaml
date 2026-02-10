@@ -25,6 +25,12 @@ services:
       - --rpc-http-port=8545
       - --rpc-http-api=ETH,NET,WEB3,QBFT,ADMIN,DEBUG,MINER,TXPOOL,CLIQUE
       - --rpc-http-cors-origins=*
+
+      - --rpc-ws-enabled=true
+      - --rpc-ws-host=0.0.0.0
+      - --rpc-ws-port=8575
+      - --rpc-ws-api=ETH,NET,WEB3,QBFT,ADMIN,DEBUG,MINER,TXPOOL,CLIQUE
+
       - --host-allowlist=*
       - --min-gas-price=0
       - --p2p-port=30303
@@ -32,6 +38,7 @@ services:
       - --Xdns-update-enabled=true
     ports:
       - "8545:8545"
+      - "8575:8575"
 
 
   bankA-v2:
@@ -54,6 +61,12 @@ services:
       - --rpc-http-port=8545
       - --rpc-http-api=ETH,NET,WEB3,QBFT,ADMIN,DEBUG,MINER,TXPOOL,CLIQUE
       - --rpc-http-cors-origins=*
+
+      - --rpc-ws-enabled=true
+      - --rpc-ws-host=0.0.0.0
+      - --rpc-ws-port=8576
+      - --rpc-ws-api=ETH,NET,WEB3,QBFT,ADMIN,DEBUG,MINER,TXPOOL,CLIQUE
+
       - --host-allowlist=*
       - --min-gas-price=0
       - --p2p-port=30303
@@ -61,6 +74,7 @@ services:
       - --Xdns-update-enabled=true
     ports:
       - "8546:8545"
+      - "8576:8576"
   
   bankB-v3:
     image: hyperledger/besu:25.12.0
